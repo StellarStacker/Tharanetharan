@@ -173,6 +173,7 @@ class Authenticate:
             if(self.Authclass.auth_pin(t)): 
                 print("Username : ",self.user_name,"\n")
                 print("Account Number : ",self.Accountnumber,"\n")
+		print("Branch name :  Kattankulathur","\n")
                 print("Bank Name : SRM BANK OF INDIA","\n")
                 time.sleep(3)
                 self.Repeat=False
