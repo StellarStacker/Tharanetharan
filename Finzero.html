@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinZero Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #hero {
+            background: url('bank-hero.jpg') no-repeat center center/cover;
+            height: 400px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #hero h2 {
+            font-size: 40px;
+        }
+        .btn {
+            background-color: #0073e6;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+        }
+        .feature-list, .loan-options, .card-options, .support-options {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .feature-item, .loan-item, .card-item, .support-item {
+            background-color: white;
+            padding: 20px;
+            width: 30%;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .feature-item:hover, .loan-item:hover, .card-item:hover, .support-item:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        footer ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        /* Form styling */
+        .form-container {
+            background-color: #f8f8f8;
+            padding: 20px;
+            width: 40%;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #003366;
+        }
+
+        /* Chatbot styling */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff6600;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .chatbox {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+        }
+
+        .chatbox-header {
+            background-color: #ff6600;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .chatbox-messages {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+
+        .chatbox-input {
+            display: flex;
+            padding: 10px;
+        }
+
+        .chatbox-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chatbox-input button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>FinZero Bank</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#loans">Loans</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#signup">Sign Up</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero">
+    <div class="hero-content">
+        <h2 style="font-weight: bold; color: orange;">Next-Level Banking Solutions</h2>
+        <p style="color: black;">Join FinZero Bank for seamless and smart banking experiences.</p>
+        <a href="#signup" class="btn">Sign Up Now</a>
+    </div>
+</section>
+
+<section id="features">
+    <h2>Banking Solutions Tailored for Businesses</h2>
+    <div class="feature-list">
+        <div class="feature-item">
+            <h3>Instant Onboarding</h3>
+            <p>Start your business banking journey with digital and paperless onboarding.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Dukandar Overdraft</h3>
+            <p>Overdraft facility with no fixed EMI and interest charged only on the amount used.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Zero Balance Account</h3>
+            <p>Enjoy zero balance current accounts when you use our POS or SmartHub solutions.</p>
+        </div>
+    </div>
+</section>
+
+<section id="loans">
+    <h2>Access Business Loans Instantly</h2>
+    <div class="loan-options">
+        <div class="loan-item">
+            <h3>Business Loan</h3>
+            <p>Get up to ₹75 lakhs in business loans quickly and easily with our merchant-friendly loans.</p>
+        </div>
+        <div class="loan-item">
+            <h3>Working Capital</h3>
+            <p>Flexible working capital loans to manage your daily business operations.</p>
+        </div>
+        <div class="loan-item">
+            <h3>Gold Loan</h3>
+            <p>Leverage your gold assets to access quick business financing.</p>
+        </div>
+    </div>
+</section>
+
+<section id="cards">
+    <h2>Business Debit and Credit Cards</h2>
+    <div class="card-options">
+        <div class="card-item">
+            <h3>Business Debit Card</h3>
+            <p>Enjoy cashbacks, free insurance cover, and more with our business debit cards.</p>
+        </div>
+        <div class="card-item">
+            <h3>Prepaid Business Card</h3>
+            <p>Get 5% cashback on utility payments and 1% on all others. Save up to ₹12,000 annually.</p>
+        </div>
+    </div>
+</section>
+
+<section id="support">
+    <h2>24/7 Customer Support</h2>
+    <p>Our team is here for you around the clock. Reach us via chatbot or call support at any time.</p>
+    <div class="support-options">
+        <div class="support-item">
+            <h3>Chat Support</h3>
+            <p>Talk to ZEROSHA anytime for quick assistance.</p>
+        </div>
+        <div class="support-item">
+            <h3>Call Support</h3>
+            <p>Call us 24/7 for personalized assistance with your banking needs.</p>
+        </div>
+    </div>
+</section>
+
+<section id="signup">
+    <h2>Create Your FinZero Account</h2>
+    <div class="form-container">
+        <form>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 FinZero Bank. All rights reserved.</p>
+    <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#loans">Loans</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#signup">Sign Up</a></li>
+    </ul>
+</footer>
+
+<!-- Chatbot -->
+<button class="chatbot-btn" onclick="toggleChat()">🤖</button>
+<div class="chatbox" id="chatbox">
+    <div class="chatbox-header">
+        <h3>ZEROSHA</h3>
+    </div>
+    <div class="chatbox-messages" id="chatMessages">
+        <p>Hello! How can I assist you today?</p>
+    </div>
+    <div class="chatbox-input">
+        <input type="text" id="userMessage" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    function toggleChat() {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const userMessage = document.getElementById('userMessage').value;
+        const chatMessages = document.getElementById('chatMessages');
+        
+        if (userMessage.trim() !== '') {
+            const userMessageElem = document.createElement('p');
+            userMessageElem.textContent = `You: ${userMessage}`;
+            chatMessages.appendChild(userMessageElem);
+            document.getElementById('userMessage').value = '';
+
+            // Simulated bot responses
+            const botResponse = generateBotResponse(userMessage);
+            const botMessageElem = document.createElement('p');
+            botMessageElem.textContent = `ZEROSHA: ${botResponse}`;
+            chatMessages.appendChild(botMessageElem);
+        }
+    }
+
+    function generateBotResponse(message) {
+        const responses = {
+            "hi": "Hello! How can I assist you today?",
+            "what is your name": "I'm ZEROSHA, your virtual assistant.",
+            "what services do you offer": "We offer loans, debit cards, credit cards, and more.",
+            "help": "Please specify what you need help with.",
+            "bye": "Goodbye! Have a great day!"
+        };
+        return responses[message.toLowerCase()] || "I'm sorry, I didn't understand that.";
+    }
+</script>
+
+</body>
+</html>
