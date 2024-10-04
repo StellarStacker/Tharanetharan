@@ -346,13 +346,59 @@
     }
 
     function generateBotResponse(message) {
-        const responses = {
-            "hi": "Hello! How can I assist you today?",
-            "what is your name": "I'm ZEROSHA, your virtual assistant.",
-            "what services do you offer": "We offer loans, debit cards, credit cards, and more.",
-            "help": "Please specify what you need help with.",
-            "bye": "Goodbye! Have a great day!"
-        };
+    const responses = {
+        "hi": "Hello! How can I assist you today?",
+        "hello": "Hi there! How can I help you?",
+        "what is your name": "I'm ZEROSHA, your virtual assistant.",
+        "who are you": "I'm ZEROSHA, your virtual assistant. How can I assist you?",
+        "what services do you offer": "We offer loans, debit cards, credit cards, insurance, and more.",
+        "can you help me with loans": "Yes, I can assist you with loan details. Please provide the type of loan you're interested in.",
+        "what types of loans do you offer": "We offer home loans, personal loans, car loans, and business loans.",
+        "how to apply for a loan": "You can apply for a loan through our website or mobile app. Would you like me to guide you?",
+        "what is the interest rate on home loans": "Our home loan interest rates start at 3.5%. Would you like to know more?",
+        "what documents are required for a home loan": "You will need ID proof, income proof, bank statements, and property documents.",
+        "how can I get a debit card": "You can apply for a debit card through our online portal or visit a branch.",
+        "what is a credit card": "A credit card allows you to borrow funds to make purchases, with the condition that you pay back the money with interest.",
+        "how can I get a credit card": "You can apply for a credit card via our website or visit one of our branches.",
+        "what is the credit card interest rate": "Our credit card interest rates start at 15% APR. The rate varies depending on the card.",
+        "how can I activate my credit card": "You can activate your credit card through our mobile app or by calling customer service.",
+        "how to check my account balance": "You can check your account balance by logging into our app or online portal.",
+        "how to transfer money": "You can transfer money through our mobile app, online banking, or by visiting a branch.",
+        "can I get a business loan": "Yes, we offer business loans. Please provide more details about your business.",
+        "what is your customer support number": "Our customer support number is 1-800-123-4567.",
+        "how can I reset my password": "You can reset your password by clicking 'Forgot Password' on the login page.",
+        "how to report a lost card": "To report a lost card, please call our customer service immediately at 1-800-123-4567.",
+        "what are your working hours": "Our branches are open from 9 AM to 5 PM, Monday through Friday.",
+        "where is the nearest branch": "You can find the nearest branch by using our branch locator on the website.",
+        "do you have mobile banking": "Yes, we offer mobile banking. You can download our app from the App Store or Google Play.",
+        "can I open an account online": "Yes, you can open an account online. Just visit our website and follow the instructions.",
+        "what are the benefits of online banking": "Online banking allows you to manage your accounts, transfer funds, pay bills, and more from the comfort of your home.",
+        "how secure is your online banking": "We use advanced encryption and security measures to ensure that your data is safe.",
+        "do you offer investment services": "Yes, we offer a range of investment options such as mutual funds, stocks, and bonds.",
+        "what is a fixed deposit": "A fixed deposit is a financial instrument where you deposit money for a fixed period at a predetermined interest rate.",
+        "how do I open a fixed deposit": "You can open a fixed deposit through our online banking portal or by visiting a branch.",
+        "what is the interest rate on fixed deposits": "Our fixed deposit interest rates vary depending on the tenure and amount. The rates start at 2.5%.",
+        "what is internet banking": "Internet banking allows you to perform financial transactions online without visiting a branch.",
+        "how do I enroll for internet banking": "You can enroll for internet banking by visiting our website and registering with your account details.",
+        "what is the minimum balance required": "The minimum balance requirement depends on the type of account. For a savings account, it's $500.",
+        "how to close my account": "To close your account, please visit a branch or contact customer service.",
+        "do you offer student loans": "Yes, we offer student loans. You can apply online or visit one of our branches.",
+        "what is a personal loan": "A personal loan is an unsecured loan that you can use for various personal expenses.",
+        "what is the eligibility criteria for a personal loan": "Eligibility for a personal loan depends on your credit score, income, and employment status.",
+        "how to check my loan application status": "You can check your loan application status through our website or mobile app.",
+        "what is the processing fee for a loan": "The processing fee for a loan is usually 1-2% of the loan amount.",
+        "how can I increase my credit limit": "You can request a credit limit increase through our app or by contacting customer service.",
+        "what is the billing cycle for credit cards": "Our credit card billing cycle is typically 30 days, but this may vary depending on the card.",
+        "how to set up automatic bill payments": "You can set up automatic bill payments through our online banking portal or mobile app.",
+        "how to block my card": "To block your card, call our customer service at 1-800-123-4567 or do it via our mobile app.",
+        "how can I update my personal information": "You can update your personal information by logging into your account on our website or app.",
+        "how to activate mobile banking": "You can activate mobile banking by downloading our app and registering your account.",
+        "what is two-factor authentication": "Two-factor authentication adds an extra layer of security by requiring a second form of identification.",
+        "how to apply for insurance": "You can apply for insurance by visiting our website or contacting an agent at our branch.",
+        "what types of insurance do you offer": "We offer health, life, auto, and home insurance.",
+        "how do I file an insurance claim": "You can file an insurance claim through our website, app, or by visiting a branch."
+        // Continue adding more questions and responses here.
+    };
         return responses[message.toLowerCase()] || "I'm sorry, I didn't understand that.";
     }
 </script>
