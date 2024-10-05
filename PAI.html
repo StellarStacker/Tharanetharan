@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinZero Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .portfolio-form, .portfolio-summary, .ai-analysis { border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+        h2 { color: #004080; }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"], .download-btn {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, .download-btn:hover {
+            background-color: #003366;
+        }
+        #loanOptions { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="portfolio-form">
+    <h2>Enter Your Investment Portfolio Details</h2>
+    <form id="portfolioForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="accountNumber">Account Number:</label>
+        <input type="text" id="accountNumber" name="accountNumber" required>
+
+        <label for="creditScore">Credit Score:</label>
+        <input type="number" id="creditScore" name="creditScore" required min="300" max="850">
+
+        <input type="submit" value="Get Portfolio">
+    </form>
+</div>
+
+<div class="portfolio-summary" id="portfolioSummary" style="display:none;">
+    <h2>Your Investment Portfolio Summary</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Detail</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="summaryBody"></tbody>
+    </table>
+    <button class="download-btn" id="downloadCSV">Download as CSV</button>
+</div>
+
+<div class="ai-analysis" id="aiAnalysis" style="display:none;">
+    <h2>AI Analysis</h2>
+    <form id="aiForm">
+        <label for="question">Ask AI:</label>
+        <input type="text" id="question" name="question" required>
+        <input type="submit" value="Get Analysis">
+    </form>
+    <div id="aiResponse"></div>
+</div>
+
+<div id="loanOptions" style="display:none;">
+    <h2>Loan Eligibility</h2>
+    <div id="loanResponse"></div>
+</div>
+
+<script>
+    // Sample portfolio database
+    const portfolioDB = {
+        "john doe": { name: "John Doe", accountNumber: "123456789", holdMarketValue: 100000, totalInvestment: 80000, yearToDateGrowth: 20000 },
+        "jane smith": { name: "Jane Smith", accountNumber: "987654321", holdMarketValue: 150000, totalInvestment: 120000, yearToDateGrowth: 30000 }
+    };
+
+    // Predefined responses for AI analysis
+    const aiResponses = {
+        "market value": (portfolio) => `The market value of your investments is ₹${portfolio.holdMarketValue}.`,
+        "total investment": (portfolio) => `Your total investment cost is ₹${portfolio.totalInvestment}.`,
+        "year to date growth": (portfolio) => `Your year-to-date growth is ₹${portfolio.yearToDateGrowth}.`,
+        "investment performance": (portfolio) => {
+            const growthPercentage = ((portfolio.yearToDateGrowth / portfolio.totalInvestment) * 100).toFixed(2);
+            return `Your investments have grown by ${growthPercentage}% year to date.`;
+        }
+    };
+
+    document.getElementById('portfolioForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get values from the form
+        const name = document.getElementById('name').value.toLowerCase(); // Convert to lower case
+        const accountNumber = document.getElementById('accountNumber').value;
+        const creditScore = parseInt(document.getElementById('creditScore').value, 10);
+
+        // Simulate fetching portfolio data
+        const userPortfolio = portfolioDB[name] || null;
+
+        if (userPortfolio && userPortfolio.accountNumber === accountNumber) {
+            const summaryBody = document.getElementById('summaryBody');
+            summaryBody.innerHTML = `
+                <tr><td>Full Name</td><td>${userPortfolio.name}</td></tr>
+                <tr><td>Account Number</td><td>${userPortfolio.accountNumber}</td></tr>
+                <tr><td>Hold Market Value</td><td>₹${userPortfolio.holdMarketValue}</td></tr>
+                <tr><td>Total Investment Cost</td><td>₹${userPortfolio.totalInvestment}</td></tr>
+                <tr><td>Year-to-Date Growth</td><td>₹${userPortfolio.yearToDateGrowth}</td></tr>
+            `;
+
+            // Show the summary and AI analysis
+            document.getElementById('portfolioSummary').style.display = 'block';
+            document.getElementById('aiAnalysis').style.display = 'block';
+
+            // Display loan options based on credit score
+            let loanOptions = '';
+            if (creditScore >= 750) {
+                loanOptions = 'You are eligible for all loans, including premium options.';
+            } else if (creditScore >= 650) {
+                loanOptions = 'You are eligible for standard loans.';
+            } else if (creditScore >= 550) {
+                loanOptions = 'You may be eligible for secured loans.';
+            } else {
+                loanOptions = 'Unfortunately, you may not qualify for loans at this time.';
+            }
+            document.getElementById('loanResponse').innerHTML = loanOptions;
+            document.getElementById('loanOptions').style.display = 'block';
+
+        } else {
+            alert(`Error fetching portfolio: Invalid name or account number. Please ensure you entered one of the following:\n\n- John Doe: 123456789\n- Jane Smith: 987654321`);
+        }
+    });
+
+    document.getElementById('aiForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the question from the form
+        const question = document.getElementById('question').value.toLowerCase();
+
+        // Get the user's portfolio from the summary table
+        const name = document.getElementById('name').value.toLowerCase();
+        const userPortfolio = portfolioDB[name];
+
+        // Check if a response is defined for the question
+        if (aiResponses[question]) {
+            const response = aiResponses[question](userPortfolio);
+            document.getElementById('aiResponse').innerHTML = `<strong>AI Response:</strong> ${response}`;
+        } else {
+            document.getElementById('aiResponse').innerHTML = `<strong>AI Response:</strong> Sorry, I do not have information on that question.`;
+        }
+    });
+
+    // Function to download portfolio as CSV
+    document.getElementById('downloadCSV').addEventListener('click', function() {
+        const userPortfolio = portfolioDB[document.getElementById('name').value.toLowerCase()];
+        if (userPortfolio) {
+            const csvContent = `data:text/csv;charset=utf-8,` +
+                `Detail,Value\n` +
+                `Full Name,${userPortfolio.name}\n` +
+                `Account Number,${userPortfolio.accountNumber}\n` +
+                `Hold Market Value,${userPortfolio.holdMarketValue}\n` +
+                `Total Investment Cost,${userPortfolio.totalInvestment}\n` +
+                `Year-to-Date Growth,${userPortfolio.yearToDateGrowth}\n`;
+
+            // Create a download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `${userPortfolio.name}_portfolio.csv`);
+            document.body.appendChild(link);
+            link.click(); // Automatically click the link to download
+            document.body.removeChild(link);
+        } else {
+            alert('No portfolio data available for download.');
+        }
+    });
+</script>
+
+</body>
+</html>
